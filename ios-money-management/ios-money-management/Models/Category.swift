@@ -1,10 +1,3 @@
-//
-//  Category.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 12/05/2024.
-//
-
 import Foundation
 import UIKit
 import FirebaseCore
@@ -82,26 +75,36 @@ class Category{
         }
         return income
     }
-    //    Lấy danh sách category Expenses
+    // Lấy danh sách category Expenses
     public static func getExpenses() async -> [Category] {
         let db = Firestore.firestore()
         let cateRef = db.collection("Category").whereField("isIncome", isEqualTo: false)
         var expenses = [Category]()
+
         do {
             let querySnapshot = try await cateRef.getDocuments()
+            
             for document in querySnapshot.documents {
                 let data = document.data()
-                expenses.append(Category(ID: data["ID"] as! String, Name: data["Name"] as! String, Image: UIImage(named: data["Image"] as! String), inCome: false))
+
+                // Kiểm tra và ép kiểu an toàn cho các trường dữ liệu
+                if let id = data["ID"] as? String,
+                   let name = data["Name"] as? String,
+                   let imageName = data["Image"] as? String,
+                   let image = UIImage(named: imageName) {  // Kiểm tra xem ảnh có tồn tại không
+                    // Nếu tất cả dữ liệu hợp lệ, thêm vào danh sách
+                    expenses.append(Category(ID: id, Name: name, Image: image, inCome: false))
+                } else {
+                    // Nếu có dữ liệu thiếu hoặc không hợp lệ, in ra thông báo
+                    print("Lỗi dữ liệu không hợp lệ: \(data)")
+                }
             }
         } catch {
             print("Lỗi khi truy vấn: \(error)")
             // Xử lý lỗi tại đây
         }
+        
         return expenses
-        
-        
     }
-    
-    
-    
+
 }

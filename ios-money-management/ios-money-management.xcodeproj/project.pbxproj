@@ -16,7 +16,6 @@
 		3F92F0562BD5375100CCD1D9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92F0552BD5375100CCD1D9 /* SceneDelegate.swift */; };
 		3F92F0582BD5375100CCD1D9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92F0572BD5375100CCD1D9 /* LoginViewController.swift */; };
 		3F92F05B2BD5375100CCD1D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F92F0592BD5375100CCD1D9 /* Main.storyboard */; };
-		3F92F05E2BD5375100CCD1D9 /* ios_money_management.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3F92F05C2BD5375100CCD1D9 /* ios_money_management.xcdatamodeld */; };
 		3F92F0602BD5375200CCD1D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F92F05F2BD5375200CCD1D9 /* Assets.xcassets */; };
 		3F92F0632BD5375200CCD1D9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F92F0612BD5375200CCD1D9 /* LaunchScreen.storyboard */; };
 		3F92F06E2BD5375300CCD1D9 /* ios_money_managementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F92F06D2BD5375300CCD1D9 /* ios_money_managementTests.swift */; };
@@ -44,7 +43,6 @@
 		644E047C2BEF2A7B004D2AFB /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644E047B2BEF2A7B004D2AFB /* UserProfile.swift */; };
 		6464A2602BFB535800B6A4A2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 6464A25F2BFB535800B6A4A2 /* SDWebImage */; };
 		6467B9122BF0772300373C8B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6467B9112BF0772300373C8B /* Category.swift */; };
-		646B64C42BD5A151004049FB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 646B64C32BD5A151004049FB /* GoogleService-Info.plist */; };
 		646B64CC2BD5B145004049FB /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 646B64CB2BD5B145004049FB /* FirebaseAuth */; };
 		646B64CE2BD5B145004049FB /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 646B64CD2BD5B145004049FB /* FirebaseFirestore */; };
 		646B64D02BD5B145004049FB /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 646B64CF2BD5B145004049FB /* FirebaseFirestoreSwift */; };
@@ -57,6 +55,8 @@
 		64B9EFE62BDD0163007055B8 /* TransactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9EFE52BDD0163007055B8 /* TransactionTableViewController.swift */; };
 		64B9EFE82BDD01FA007055B8 /* Transaction_TEMP_TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9EFE72BDD01FA007055B8 /* Transaction_TEMP_TableViewCell.swift */; };
 		64B9EFEE2BDD4FDC007055B8 /* TabHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64B9EFED2BDD4FDC007055B8 /* TabHomeViewController.swift */; };
+		FEF4E5C72DB7C6FA00AC39FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FEF4E5C62DB7C6FA00AC39FE /* GoogleService-Info.plist */; };
+		FEF4E5C92DB7CADD00AC39FE /* SampleDataUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEF4E5C82DB7CADD00AC39FE /* SampleDataUploader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,7 +87,6 @@
 		3F92F0552BD5375100CCD1D9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		3F92F0572BD5375100CCD1D9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3F92F05A2BD5375100CCD1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3F92F05D2BD5375100CCD1D9 /* ios_money_management.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ios_money_management.xcdatamodel; sourceTree = "<group>"; };
 		3F92F05F2BD5375200CCD1D9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F92F0622BD5375200CCD1D9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F92F0642BD5375200CCD1D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -117,7 +116,6 @@
 		644E04792BEE567E004D2AFB /* WelcomeNavigation_Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeNavigation_Controller.swift; sourceTree = "<group>"; };
 		644E047B2BEF2A7B004D2AFB /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		6467B9112BF0772300373C8B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		646B64C32BD5A151004049FB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		646B64D32BD667C7004049FB /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		646E4C9A2BDFB148004DCCF2 /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		646E4C9B2BDFB148004DCCF2 /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
@@ -126,6 +124,8 @@
 		64B9EFE52BDD0163007055B8 /* TransactionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewController.swift; sourceTree = "<group>"; };
 		64B9EFE72BDD01FA007055B8 /* Transaction_TEMP_TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction_TEMP_TableViewCell.swift; sourceTree = "<group>"; };
 		64B9EFED2BDD4FDC007055B8 /* TabHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabHomeViewController.swift; sourceTree = "<group>"; };
+		FEF4E5C62DB7C6FA00AC39FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FEF4E5C82DB7CADD00AC39FE /* SampleDataUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleDataUploader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,12 +181,11 @@
 		3F92F0522BD5375100CCD1D9 /* ios-money-management */ = {
 			isa = PBXGroup;
 			children = (
+				FEF4E5C62DB7C6FA00AC39FE /* GoogleService-Info.plist */,
 				643C04152BDCB159008E105E /* Models */,
-				646B64C32BD5A151004049FB /* GoogleService-Info.plist */,
 				3F92F0872BD5400300CCD1D9 /* Controllers */,
 				3F92F0862BD53FA800CCD1D9 /* System files */,
 				3F92F0592BD5375100CCD1D9 /* Main.storyboard */,
-				3F92F05C2BD5375100CCD1D9 /* ios_money_management.xcdatamodeld */,
 			);
 			path = "ios-money-management";
 			sourceTree = "<group>";
@@ -216,6 +215,7 @@
 				3F92F05F2BD5375200CCD1D9 /* Assets.xcassets */,
 				3F92F0612BD5375200CCD1D9 /* LaunchScreen.storyboard */,
 				3F92F0642BD5375200CCD1D9 /* Info.plist */,
+				FEF4E5C82DB7CADD00AC39FE /* SampleDataUploader.swift */,
 			);
 			name = "System files";
 			sourceTree = "<group>";
@@ -387,9 +387,9 @@
 				644E04722BED2985004D2AFB /* WalletTableViewCell.xib in Resources */,
 				646E4C9D2BDFB148004DCCF2 /* TransactionTableViewCell.xib in Resources */,
 				3F92F0632BD5375200CCD1D9 /* LaunchScreen.storyboard in Resources */,
-				646B64C42BD5A151004049FB /* GoogleService-Info.plist in Resources */,
 				3F92F0602BD5375200CCD1D9 /* Assets.xcassets in Resources */,
 				3F92F05B2BD5375100CCD1D9 /* Main.storyboard in Resources */,
+				FEF4E5C72DB7C6FA00AC39FE /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,6 +429,7 @@
 				6467B9122BF0772300373C8B /* Category.swift in Sources */,
 				646B64D42BD667C7004049FB /* ForgotPasswordViewController.swift in Sources */,
 				644E04742BED2B35004D2AFB /* Wallet.swift in Sources */,
+				FEF4E5C92DB7CADD00AC39FE /* SampleDataUploader.swift in Sources */,
 				644E047A2BEE567E004D2AFB /* WelcomeNavigation_Controller.swift in Sources */,
 				644E04712BED2985004D2AFB /* WalletTableViewCell.swift in Sources */,
 				3FE5D8A62BFC11B000F963D9 /* DetailExpenseCell.swift in Sources */,
@@ -442,7 +443,6 @@
 				3F49B7842BDD948C0061CE46 /* NewExpenseController.swift in Sources */,
 				6476A9D22BD53384009935A8 /* WelcomeViewController.swift in Sources */,
 				3FC288002BEBCDF100B3C841 /* IncomeImageCell.swift in Sources */,
-				3F92F05E2BD5375100CCD1D9 /* ios_money_management.xcdatamodeld in Sources */,
 				3F37FA052BEE7BD900EFB362 /* SettingCell.swift in Sources */,
 				3F9E5FC02BEC39E700E6A36B /* EditWalletViewController.swift in Sources */,
 				64B9EFE62BDD0163007055B8 /* TransactionTableViewController.swift in Sources */,
@@ -830,19 +830,6 @@
 			productName = FirebaseStorage;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		3F92F05C2BD5375100CCD1D9 /* ios_money_management.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3F92F05D2BD5375100CCD1D9 /* ios_money_management.xcdatamodel */,
-			);
-			currentVersion = 3F92F05D2BD5375100CCD1D9 /* ios_money_management.xcdatamodel */;
-			path = ios_money_management.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3F92F0482BD5375000CCD1D9 /* Project object */;
 }

@@ -1,10 +1,3 @@
-//
-//  Wallet.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 09/05/2024.
-//
-
 import Foundation
 import FirebaseFirestore
 import UIKit

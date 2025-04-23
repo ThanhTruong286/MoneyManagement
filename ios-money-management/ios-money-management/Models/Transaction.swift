@@ -1,10 +1,3 @@
-//
-//  Transaction.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 27/04/2024.
-//
-
 import Foundation
 import UIKit
 import FirebaseCore
@@ -270,11 +263,6 @@ class Transaction  {
             print("Transaction added successfully!")
 
             return transactionRef.documentID // Trả về ID giao dịch mới
-        
-
-
-        
+                
     }
-  
-
 }
