@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "testa.svg",
+      "filename" : "unchecked 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "testa 2.svg",
+      "filename" : "unchecked 2.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "testa 1.svg",
+      "filename" : "unchecked 3.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
