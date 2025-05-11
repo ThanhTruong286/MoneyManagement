@@ -1,10 +1,9 @@
-
 import UIKit
 
 class ProfileViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     
-//MARK: Properties
+    //MARK: Properties
     @IBOutlet weak var settingTableView: UITableView!
     @IBOutlet weak var imageView: UIView!
     @IBOutlet weak var cornerTable: UIView!
@@ -19,23 +18,20 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Lấy UID
+        //Lấy UID
         let UID = UserDefaults.standard.string(forKey: "UID") ?? ""
         print("Vào ProfileViewController - \(UID)")
-        //        Lấy userProfile đang nằm trong Tabbar controller
+        //Lấy userProfile đang nằm trong Tabbar controller
         if let tabBarController = self.tabBarController as? TabHomeViewController {
-            // Truy cập dữ liệu trong TabBarController
+            //Truy cập dữ liệu trong TabBarController
             if let userProfile = tabBarController.userProfile
             {
                         self.image.image = userProfile.Avatar
                         self.fullname.text = userProfile.Fullname
                         self.userProfile = userProfile
             }
-            
         }
-        
 
-        
         setFrontEnd()
         settingTableView.dataSource = self
         settingTableView.delegate = self
@@ -68,7 +64,6 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
             }
         }
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         print("Load lại ProfileViewController")
@@ -79,45 +74,43 @@ class ProfileViewController: UIViewController, UITableViewDataSource, UITableVie
         tabBarController?.tabBar.isHidden = false
         
         
-        //        Lấy userProfile đang nằm trong Tabbar controller
+        //Lấy userProfile đang nằm trong Tabbar controller
         if let tabBarController = self.tabBarController as? TabHomeViewController {
-            // Truy cập dữ liệu trong TabBarController
+            //Truy cập dữ liệu trong TabBarController
             if let userProfile = tabBarController.userProfile
             {
                         self.image.image = userProfile.Avatar
                         self.fullname.text = userProfile.Fullname
                         self.userProfile = userProfile
             }
-            
         }
     }
     //MARK: implementing classes
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        Lấy main story board
+        //Lấy main story board
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-//        Chuyển màn hình khi nhấn
+        //Chuyển màn hình khi nhấn
         if indexPath.row == 0{
-            //        Lấy màn hình cần chuyển qua
+            //Lấy màn hình cần chuyển qua
             let view_controller = storyboard.instantiateViewController(withIdentifier: "AccountWallets")
-            //        set title cho navigation
+            //set title cho navigation
             view_controller.navigationItem.title = "Account"
-            //        Đẩy màn hình vào hàng đợi... (chuyển màn hình)
+            //Đẩy màn hình vào hàng đợi... (chuyển màn hình)
             navigationController?.pushViewController(view_controller, animated: true)
-            //        self.present(view_controller, animated: true)
-            
+            //self.present(view_controller, animated: true)
         }
         else if indexPath.row == 1{
             
-            //        Lấy màn hình cần chuyển qua
+            //Lấy màn hình cần chuyển qua
             let view_controller = storyboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
-            //        set title cho navigation
+            //set title cho navigation
             view_controller.navigationItem.title = "Edit Profile"
             
             view_controller.userProfile = userProfile
-            //        Đẩy màn hình vào hàng đợi... (chuyển màn hình)
+            //Đẩy màn hình vào hàng đợi... (chuyển màn hình)
             navigationController?.pushViewController(view_controller, animated: true)
-            //        self.present(view_controller, animated: true)
+            //self.present(view_controller, animated: true)
         }
         else if indexPath.row == 2{
             dismiss(animated: true)

@@ -1,10 +1,3 @@
-//
-//  AddWalletViewController.swift
-//  ios-money-management
-//
-//  Created by nguyenthanhnhan on 19/02/1403 AP.
-//
-
 import UIKit
 import FirebaseFirestore
 
@@ -48,8 +41,6 @@ class AddWalletViewController: UIViewController,UITextViewDelegate, UICollection
     
     //MARK: events
     
-    
-    
     @IBAction func newWalletTapped(_ sender: UIButton)  {
         Task {
             
@@ -79,7 +70,7 @@ class AddWalletViewController: UIViewController,UITextViewDelegate, UICollection
             //neu khong ton tai thi la them vi
             else {
 
-                //        Lấy userProfile (thong tin cua user) đang nằm trong Tabbar controller
+                //Lấy userProfile (thong tin cua user) đang nằm trong Tabbar controller
                 if let tabBarController = self.tabBarController as? TabHomeViewController {
                     if let userprofile = tabBarController.userProfile {
                         //lay user id va icon duoc chon
@@ -103,15 +94,9 @@ class AddWalletViewController: UIViewController,UITextViewDelegate, UICollection
                             navigationController?.popViewController(animated: true)
                             
                         }
-                        
                     }
                 }
             }
-         
-         
-            
-        
-            
         }
     }
     
@@ -120,13 +105,13 @@ class AddWalletViewController: UIViewController,UITextViewDelegate, UICollection
     //chan user nhap chu
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let _ = string.rangeOfCharacter(from: NSCharacterSet.decimalDigits.inverted) {
-                // Nếu có ký tự không phải số, không cho phép thay đổi
+                //Nếu có ký tự không phải số, không cho phép thay đổi
                 return false
             }
                 
          
         
-            // Nếu chỉ có số, cho phép thay đổi
+            //Nếu chỉ có số, cho phép thay đổi
             return true
     }
     

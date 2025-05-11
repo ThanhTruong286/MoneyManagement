@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  ios-money-management
-//
-//  Created by nguyenthanhnhan on 02/02/1403 AP.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

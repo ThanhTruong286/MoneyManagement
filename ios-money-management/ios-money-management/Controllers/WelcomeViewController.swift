@@ -1,10 +1,3 @@
-//
-//  WelcomeViewController.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 21/04/2024.
-//
-
 import UIKit
 
 class WelcomeViewController: UIViewController {
@@ -13,8 +6,6 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    
-
     /*
     // MARK: - Navigation
 
@@ -24,5 +15,4 @@ class WelcomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

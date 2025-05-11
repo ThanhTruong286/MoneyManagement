@@ -1,10 +1,3 @@
-//
-//  TransactionTableViewCell.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 27/04/2024.
-//
-
 import UIKit
 
 class Transaction_TEMP_TableViewCell: UITableViewCell {

@@ -1,10 +1,3 @@
-//
-//  DetailWalletViewController.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 10/05/2024.
-//
-
 import UIKit
 
 class DetailWalletViewController: UIViewController {
@@ -25,23 +18,20 @@ class DetailWalletViewController: UIViewController {
         super.viewDidLoad()
 
         print("Vào DetailWalletViewController - \(wallet?.getName ?? "")")
-//        Đổ dữ liệu lên các UI
+        //Đổ dữ liệu lên các UI
         setFrontEnd()
-//        bỏ các transaction của ví vào mảng -> đẩy lên table view
+        //Bỏ các transaction của ví vào mảng -> đẩy lên table view
         setTransactions(data: (wallet?.getTransactions())!)
-//        sắp xếp lại mảng
+        //Sắp xếp lại mảng
         transactions.sort { $0.getCreateAt > $1.getCreateAt }
         
-        //                Lọc transactions theo ngày
+        //Lọc transactions theo ngày
         sections = createSections(from: transactions)
         
-//        Kết nối
+        //Kết nối
         tableview.dataSource = self
         tableview.delegate = self
         tableview.register(TransactionTableViewCell.nib(), forCellReuseIdentifier: TransactionTableViewCell.identifier)
-        
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         
@@ -51,15 +41,15 @@ class DetailWalletViewController: UIViewController {
         setNavbar()
         transactions = []
 
-//        bỏ các transaction của ví vào mảng -> đẩy lên table view
+        //Bỏ các transaction của ví vào mảng -> đẩy lên table view
         setTransactions(data: (wallet?.getTransactions())!)
-//        sắp xếp lại mảng
+        //Sắp xếp lại mảng
         transactions.sort { $0.getCreateAt > $1.getCreateAt }
         
-        //                Lọc transactions theo ngày
+        //Lọc transactions theo ngày
         sections = createSections(from: transactions)
         
-//        Kết nối
+        //Kết nối
         tableview.dataSource = self
         tableview.delegate = self
         tableview.register(TransactionTableViewCell.nib(), forCellReuseIdentifier: TransactionTableViewCell.identifier)
@@ -75,21 +65,21 @@ class DetailWalletViewController: UIViewController {
         for transaction in transactions {
             let date = Calendar.current.startOfDay(for: transaction.getCreateAt)
             
-            // Check if currentSection is nil or the date has changed
+            //Check if currentSection is nil or the date has changed
             if currentSection == nil || currentSection!.date != date {
-                // If the currentSection has transactions, append it to sections
+                //If the currentSection has transactions, append it to sections
                 if let section = currentSection, !section.transactions.isEmpty {
                     sections.append(section)
                 }
-                // Create a new Section for the new date
+                //Create a new Section for the new date
                 currentSection = Section(date: date, transactions: [])
             }
             
-            // Add transaction to the current section
+            //Add transaction to the current section
             currentSection?.transactions.append(transaction)
         }
         
-        // Append the last section if it contains transactions
+        //Append the last section if it contains transactions
         if let section = currentSection, !section.transactions.isEmpty {
             sections.append(section)
         }
@@ -103,7 +93,7 @@ class DetailWalletViewController: UIViewController {
         }
     }
     func setFrontEnd() {
-//        set ảnh
+        //set ảnh
         wallet_img.image = wallet?.getImage
         wallet_name.text = wallet?.getName
         wallet_balance.text = (wallet?.Balance.getVNDFormat())
@@ -115,28 +105,22 @@ class DetailWalletViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .white
     }
 
-    /// Hàm chuyển đồ từ Date sang String
+    //Hàm chuyển đồ từ Date sang String
     func DateToString(_ date:Date) -> String{
-        //      Lấy ra 1 biến Date ở thời gian hiện tại
+        //Lấy ra 1 biến Date ở thời gian hiện tại
         let currentDateAndTime = date
-        //        Tạo ra 1 biến format
+        //Tạo ra 1 biến format
         let dateFormatter = DateFormatter()
         
-        //        Ngày: 5/9/24
+        //Ngày:
         dateFormatter.dateStyle = .medium
         
-        //        Giờ none
+        //Giờ none
         dateFormatter.timeStyle = .none
-        
-        //        Địa điểm
-//        dateFormatter.locale = Locale(identifier: "vi_VN")
-        
-        
-        
-        
+
         return dateFormatter.string(from: currentDateAndTime)
     }
-    /// Hàm Chuyển đổi từ String sang Date
+    //Hàm Chuyển đổi từ String sang Date
     func StringToDate(_ str_date:String) -> Date? {
        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
@@ -162,7 +146,7 @@ class DetailWalletViewController: UIViewController {
     @IBAction func edit_wallet_tapped(_ sender: UIButton) {
         //Lấy main.storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        //qua man hinh de edit wallet (trong AddNewWalletControllor)
+        //Qua man hinh de edit wallet (trong AddNewWalletControllor)
         let edit_wallet = storyboard.instantiateViewController(withIdentifier: "NewWallet") as! AddWalletViewController
         edit_wallet.detail_wallet = self.wallet
         edit_wallet.navigationItem.title = "Edit wallet"
@@ -173,10 +157,8 @@ class DetailWalletViewController: UIViewController {
     @IBAction func deleteWalletTapped(_ sender: UIBarButtonItem) {
         showConfirmDialog()
     }
-    
-    
-    
-    // ham hien thi dialog xac nhan xoa
+
+    //ham hien thi dialog xac nhan xoa
     func showConfirmDialog() {
         let alertController = UIAlertController(title: "Delete wallet", message: "Are you sure you want to delete this wallet?", preferredStyle: .actionSheet)
         
@@ -208,15 +190,12 @@ class DetailWalletViewController: UIViewController {
                         self.present(alertError, animated: true, completion: nil)
                         
                     }
-                    
                 }
             }
-                
-           
         }
         alertController.addAction(deleteAction)
         
-        // Configure presentation style as custom
+        //Configure presentation style as custom
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = view
             popoverController.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.maxY, width: 0, height: 0)
@@ -227,7 +206,7 @@ class DetailWalletViewController: UIViewController {
     }
 }
 extension DetailWalletViewController: UITableViewDataSource, UITableViewDelegate{
-//    UITableViewDataSource
+    //UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return sections[section].transactions.count // Trả về số lượng giao dịch trong section đó
     }
@@ -250,7 +229,7 @@ extension DetailWalletViewController: UITableViewDataSource, UITableViewDelegate
         cell.transaction_time.text = DateToString(transaction.getCreateAt)
         
         
-        //        Nếu là thu nhập: Đổi màu chữ qua xanh
+        //Nếu là thu nhập: Đổi màu chữ qua xanh
         if (transaction.getBalance > 0 && transaction.getCategory.getinCome){
             cell.transaction_balance.textColor = .green
         }
@@ -259,54 +238,47 @@ extension DetailWalletViewController: UITableViewDataSource, UITableViewDelegate
         }
         return cell
     }
-    //    Hàm set title TODAY, YESTERDAY...
+    //Hàm set title TODAY, YESTERDAY...
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         return dateFormatter.string(from: sections[section].date)
     }
-   
 
-    
     //  UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let transaction = sections[indexPath.section].transactions[indexPath.row]
 
-        
-        
         //Lấy main.storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        //        Màn hình màu xanh
+        //Màn hình màu xanh
         if (transaction.getBalance > 0 && transaction.getCategory.getinCome){
-//            Lấy màn hình
+            //Lấy màn hình
             let detail_Income_ViewController = storyboard.instantiateViewController(withIdentifier: "detail_transaction_Income") as! DetailIncomeViewController
             
-            //        set title cho navigation
+            //set title cho navigation
             detail_Income_ViewController.navigationItem.title = "Detail Income Transaction"
             
-            // Đổ dữ liệu qua màn hình
+            //Đổ dữ liệu qua màn hình
             detail_Income_ViewController.transaction = transaction
             
-            // Đẩy màn hình vào hàng đợi... (chuyển màn hình)
+            //Đẩy màn hình vào hàng đợi... (chuyển màn hình)
             navigationController?.pushViewController(detail_Income_ViewController, animated: true)
             
         }
-//        Màn hình màu đỏ
+        //Màn hình màu đỏ
         else{
             let detail_Expense_ViewController = storyboard.instantiateViewController(withIdentifier: "detail_transaction_Expenses") as! DetailExpenseViewController
             
             detail_Expense_ViewController.navigationItem.title = "Detail Expenses Transaction"
             
-            // Lấy màn hình cần chuyển qua
+            //Lấy màn hình cần chuyển qua
             detail_Expense_ViewController.transaction = transaction
 
-            // Đẩy màn hình vào hàng đợi... (chuyển màn hình)
+            //Đẩy màn hình vào hàng đợi... (chuyển màn hình)
             navigationController?.pushViewController(detail_Expense_ViewController, animated: true)
-            
         }
-        
-       
     }
 }
 struct Section {

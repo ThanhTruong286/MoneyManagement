@@ -1,14 +1,7 @@
-//
-//  DetailIncomeViewController.swift
-//  ios-money-management
-//
-//  Created by nguyenthanhnhan on 16/02/1403 AP.
-//
-
 import UIKit
 
 class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlowLayout, UICollectionViewDataSource  {
-//    var detailExpense:Transaction?
+    //var detailExpense:Transaction?
     var transaction:Transaction? = nil
     
     @IBOutlet weak var txt_des: UILabel!
@@ -33,7 +26,7 @@ class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlo
         arrImgs = []
          
 
-        //        Lấy userProfile đang nằm trong Tabbar controller
+        //Lấy userProfile đang nằm trong Tabbar controller
         if let tabBarController = self.tabBarController as? TabHomeViewController {
             if let transaction = transaction{
                 setBackEnd(wallet: tabBarController.getWalletFromTransaction(wallet_ID: transaction.getWalletID)!, transaction: transaction)
@@ -44,11 +37,6 @@ class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlo
             }
             
         }
-        
-        
-         
-
-      
         imagesCollectionView.reloadData()
     }
     override func viewDidLoad() {
@@ -58,7 +46,7 @@ class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlo
         
          
 
-        //        Lấy userProfile đang nằm trong Tabbar controller
+        //Lấy userProfile đang nằm trong Tabbar controller
         if let tabBarController = self.tabBarController as? TabHomeViewController {
             if let transaction = transaction{
                 setBackEnd(wallet: tabBarController.getWalletFromTransaction(wallet_ID: transaction.getWalletID)!, transaction: transaction)
@@ -70,25 +58,19 @@ class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlo
             
         }
     }
-    /// Hàm chuyển đồ từ Date sang String
+    //Hàm chuyển đồ từ Date sang String
     func DateToString(_ date:Date) -> String{
-        // Lấy ra 1 biến Date ở thời gian hiện tại
+        //Lấy ra 1 biến Date ở thời gian hiện tại
         let currentDateAndTime = date
-        // Tạo ra 1 biến format
+        //Tạo ra 1 biến format
         let dateFormatter = DateFormatter()
         
-        // Ngày: 5/9/24
+        //Ngày:
         dateFormatter.dateStyle = .full
         
-        // Giờ none
+        //Giờ none
         dateFormatter.timeStyle = .none
-        
-        // Địa điểm
-//        dateFormatter.locale = Locale(identifier: "vi_VN")
-        
-        
-        
-        
+
         return dateFormatter.string(from: currentDateAndTime)
     }
     func setBackEnd(wallet:Wallet, transaction:Transaction){
@@ -114,19 +96,18 @@ class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlo
 
     }
     //MARK: events
-    
     @IBAction func edit_income_tapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let detail_ex = storyboard.instantiateViewController(withIdentifier: "Income") as! NewIncomeController
         detail_ex.navigationItem.title = "Edit Income"
         if let wallets = self.wallets {
-//            Truyền mảng wallets của người dùng có qua
+            //Truyền mảng wallets của người dùng có qua
             detail_ex.wallets = wallets
-//            lấy txt wallet truyền sang -> Ví hiện tại của trans
+            //Lấy txt wallet truyền sang -> Ví hiện tại của trans
             detail_ex.selectedWallet = txt_wallet.text
             detail_ex.detail_trans = self.detailTrans
 
-//            cái gì đó để trả về dữ liệu
+            //Cái gì đó để trả về dữ liệu
             detail_ex.detailIncome = self
         }
         
@@ -142,42 +123,41 @@ class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlo
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
         
-//        Nếu người dùng xác nhận delete
+        //Nếu người dùng xác nhận delete
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             // Perform deletion action here
             Task{
-//              1:  Xoá transaction trên db
+                //1:  Xoá transaction trên db
                 try await Transaction.deleteTransaction(walletID: self.transaction!.getWalletID, transactionID: self.transaction!.getID)
-//               2: Xoá transaction ở mảng local
+                //2: Xoá transaction ở mảng local
                 if let tabBarController = self.tabBarController as? TabHomeViewController {
                     
                     if let userProfile = tabBarController.userProfile{
-//                        Tìm được ví chứa giao dịch
+                        //Tìm được ví chứa giao dịch
                         let wallet = userProfile.Wallets.first(where: {$0.getID == self.transaction?.getWalletID})
-//                        Tìm giao dịch trong ví đó
+                        //Tìm giao dịch trong ví đó
                        if let index =  wallet?.getTransactions().firstIndex(where: {$0.getID == self.transaction?.getID})
                         {
-                           // xoá giao dịch khỏi mảng
+                           //Xoá giao dịch khỏi mảng
                            wallet?.transactions_get_set.remove(at: index)
                        }
-                        //                  3:  Cộng trừ tiền lại vào ví ở local
-//                        wallet.balance trung gian = wallet.balance trung gian - (self.transaction.balance)
+                        //3:  Cộng trừ tiền lại vào ví ở local
+                        //wallet.balance trung gian = wallet.balance trung gian - (self.transaction.balance)
                         tabBarController.userProfile?.Wallets.first(where: {$0.getID == self.transaction?.getWalletID})?.Balance = (tabBarController.userProfile?.Wallets.first(where: {$0.getID == self.transaction?.getWalletID})!.Balance)! - self.transaction!.getBalance
                         
-//                        4: Cộng trừ tiền trên db:
+                        //4: Cộng trừ tiền trên db:
                         Wallet.set_updateWallet(UID: userProfile.getUID, wallet: Wallet(ID: wallet!.getID, Name: wallet!.getName, Balance: wallet!.Balance, Image: wallet?.getImage, Transaction: wallet!.transactions_get_set))
                     }
-
                 }
 
-//                Trở về màn hình trước
+                //Trở về màn hình trước
                 self.navigationController?.popViewController(animated: true)
 
             }
         }
         alertController.addAction(deleteAction)
         
-        // Configure presentation style as custom
+        //Configure presentation style as custom
         if let popoverController = alertController.popoverPresentationController {
             popoverController.sourceView = view
             popoverController.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.maxY, width: 0, height: 0)
@@ -209,9 +189,6 @@ class DetailIncomeViewController: UIViewController,  UICollectionViewDelegateFlo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width / 3 - 10 , height: 128 - 10)
     }
-    
-
-
 }
 
 

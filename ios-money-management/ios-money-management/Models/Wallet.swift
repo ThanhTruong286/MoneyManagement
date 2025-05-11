@@ -5,14 +5,14 @@ import UIKit
 import FirebaseCore
 import FirebaseFirestore
 class Wallet {
-//    MARK: Properties
+    //MARK: Properties
     private let id:String
     private var name: String
     private var balance: Int
     private  var image: UIImage?
     private var transactions = [Transaction]()
     
-//    MARK: Constructor
+    //MARK: Constructor
     init(ID: String, Name: String, Balance: Int, Image: UIImage?, Transaction: [Transaction]) {
         self.id = ID
         self.name = Name
@@ -31,8 +31,6 @@ class Wallet {
             return image?.imageAsset?.value(forKey: "assetName") as! String
             
         }
-       
-       
     }
     var getName:String{
         get{
@@ -67,10 +65,7 @@ class Wallet {
         }
     }
     
-
-    
-    
-// MARK: Method
+    //MARK: Method
     func getTransactions() -> [Transaction] {
             return transactions
         }
@@ -81,7 +76,7 @@ class Wallet {
         print("Wallet: \(id) - \(name) - \(balance)")
     }
     
-/// Lấy danh sách ví của người dùng
+    //Lấy danh sách ví của người dùng
     public static func getMyWallets(UID:String) async -> [Wallet]?{
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(UID).collection("Wallet")
@@ -98,7 +93,7 @@ class Wallet {
                         Name: i["Name"] as! String,
                         Balance:i["Balance"] as! Int,
                         Image: UIImage(named: i["Image"] as! String),
-//                        lấy danh sách transaction của 1 ví
+                        //Lấy danh sách transaction của 1 ví
                         Transaction: Transaction.getAllMyTransactions(walletID: i.documentID)!
                     )
                 )
@@ -112,11 +107,11 @@ class Wallet {
     }
     
    
-    ///Tạo ví mới -> Trả ra ID của ví
+    //Tạo ví mới -> Trả ra ID của ví
     public static func createNewWallet(UID: String, balance:Int, image: String, name: String)async throws -> String{
         let db = Firestore.firestore()
 
-        // Tạo một DocumentReference để lấy ID sau khi document được tạo
+        //Tạo một DocumentReference để lấy ID sau khi document được tạo
         let walletRef = db.collection("Wallets").document(UID).collection("Wallet").document()
         
         let walletData: [String: Any] = [
@@ -124,39 +119,37 @@ class Wallet {
             "Image": image,
             "Name": name
         ]
-        // Sử dụng transactionRef để thêm document
+        //Sử dụng transactionRef để thêm document
         try await walletRef.setData(walletData)
 
-        // Cập nhật lại document với trường ID
+        //Cập nhật lại document với trường ID
         try await walletRef.updateData(["ID": walletRef.documentID])
         print("Wallet added successfully!")
 
-        // Trả về ID wallet moisw
+        //Trả về ID wallet moisw
         return walletRef.documentID
         
     }
 
-    //xoa vi
+    //Xoa vi
     static func deleteAWallet(userID UID: String, walletId walletID:String) async {
         let db = Firestore.firestore()
         
-    //lay ra tat ca giao dich tren db bang walletID
-    //xoa giao dich tren db
+        //Lay ra tat ca giao dich tren db bang walletID
+        //Xoa giao dich tren db
         let walletFromTransactions = db.collection("Transactions").document(walletID)
         let transactionsDocs = walletFromTransactions.collection("Transaction")
-       //duyet for va xoa tung giao dich ben trong vi
+       //Duyet for va xoa tung giao dich ben trong vi
         do {
             let snapshot =  try await transactionsDocs.getDocuments()
             for i in snapshot.documents{
-//                print("called")
-//               print(i["ID"] as! String)
                 try await Transaction.deleteTransaction(walletID: walletID, transactionID: i["ID"] as! String)
             }
             
         } catch {
             print("Lỗi truy vấn - getMyWallets: \(error)")
         }
-        //xoa vi sau khi xoa xong giao dich ben trong
+        //Xoa vi sau khi xoa xong giao dich ben trong
         Task {
             do {
                 try await walletFromTransactions.delete()
@@ -167,31 +160,31 @@ class Wallet {
             }
         }
         
-    //lay ra tat ca vi cua user
+        //Lay ra tat ca vi cua user
         let walletRef = db.collection("Wallets").document(UID)
         let walleDoc = walletRef.collection("Wallet").document(walletID)
         
-    //xoa vi
+        //Xoa vi
         Task {
             do {
                 try await walleDoc.delete()
                 print("Wallet deleted successfully")
-                // Thực hiện các hành động sau khi xóa thành công
+                //Thực hiện các hành động sau khi xóa thành công
             } catch {
                 print("Error deleting wallet: \(error)")
-                // Xử lý lỗi
+                //Xử lý lỗi
             }
         }
         
     }
-    /// Cập nhật lại thông tin wallet của UID
+    //Cập nhật lại thông tin wallet của UID
     static func set_updateWallet(UID:String, wallet: Wallet){
         let db = Firestore.firestore()
         let walletRef = db.collection("Wallets").document(UID)
         
         let walletDoc = walletRef.collection("Wallet").document(wallet.getID)
         
-        // Dữ liệu mới của ví
+        //Dữ liệu mới của ví
             let walletData: [String: Any] = [
                 "Name": wallet.getName,
                 "Balance": wallet.Balance,
@@ -199,7 +192,7 @@ class Wallet {
                 "ID": wallet.getID,
             ]
 
-            // Cập nhật dữ liệu ví trên Firestore
+            //Cập nhật dữ liệu ví trên Firestore
             walletDoc.updateData(walletData) { error in
                 if let error = error {
                     print("Error updating wallet: \(error)")
@@ -207,6 +200,5 @@ class Wallet {
                     print("Wallet updated successfully!")
                 }
             }
-
     }
 }

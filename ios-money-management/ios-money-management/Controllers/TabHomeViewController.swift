@@ -1,10 +1,3 @@
-//
-// TabHomeViewController.swift
-// ios-money-management
-//
-// Created by AnNguyen on 27/04/2024.
-//
-
 import UIKit
 
 class TabHomeViewController: UITabBarController {
@@ -16,21 +9,15 @@ class TabHomeViewController: UITabBarController {
         super.viewDidLoad()
         
         
-//        Đọc category
+        //Đọc category
         Task {
-            
-             category_income = await Category.getIncome()
+            category_income = await Category.getIncome()
             category_expenses = await Category.getExpenses()
             
             category_all = category_income + category_expenses
-            
-            
         }
-        
-        
-        
     }
-    /// Hàm sử dụng để tìm đối tượng wallet từ Wallet_ID
+    //Hàm sử dụng để tìm đối tượng wallet từ Wallet_ID
     public func getWalletFromTransaction(wallet_ID:String)->Wallet?{
         if let userProfile = self.userProfile{
             for wallet in userProfile.Wallets{

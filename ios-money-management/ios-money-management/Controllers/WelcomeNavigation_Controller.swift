@@ -1,10 +1,3 @@
-//
-//  WelcomeNavigation_Controller.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 10/05/2024.
-//
-
 import UIKit
 
 class WelcomeNavigation_Controller: UINavigationController {

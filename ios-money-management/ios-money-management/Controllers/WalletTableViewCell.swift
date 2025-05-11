@@ -1,10 +1,3 @@
-//
-//  WalletTableViewCell.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 09/05/2024.
-//
-
 import UIKit
 
 class WalletTableViewCell: UITableViewCell {

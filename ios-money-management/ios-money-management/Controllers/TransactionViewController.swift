@@ -1,14 +1,7 @@
-//
-//  TransactionViewController.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 06/05/2024.
-//
-
 import UIKit
 
 class TransactionViewController: UIViewController {
-    //    Cấu trúc để chia giao dịch theo ngày
+    //Cấu trúc để chia giao dịch theo ngày
     struct Section {
         let date: Date
         var transactions: [Transaction]
@@ -20,12 +13,12 @@ class TransactionViewController: UIViewController {
         var time_from: Date?
         var time_to: Date?
     }
-    //    Cấu trúc chia filter
+    //Cấu trúc chia filter
     struct FilterState{
-        //        left
+        //left
         var filter_left: RangeTime?
         
-        //        Right
+        //Right
         var isIncome: Bool?
         var sort_new: Bool = true
         var category_id: String?
@@ -34,7 +27,7 @@ class TransactionViewController: UIViewController {
     
     var currentFilterState = FilterState()
     
-    //    MARK: Properties
+    //MARK: Properties
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var filter_left: UIView!
     @IBOutlet weak var popup_cate: UIButton!
@@ -48,7 +41,7 @@ class TransactionViewController: UIViewController {
     @IBOutlet weak var btnCategory_Income: UIButton!
     @IBOutlet weak var time_from: UIDatePicker!
     @IBOutlet weak var time_to: UIDatePicker!
-    //    Dữ liệu
+    //Dữ liệu
     private var transactions = [Transaction]()
     private var wallets = [Wallet]()
     var sections: [Section] = []
@@ -57,25 +50,25 @@ class TransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Lấy UID
+        //Lấy UID
         let UID = UserDefaults.standard.string(forKey: "UID") ?? ""
         
         
         //debug
         print("Vào TransactionViewController - \(UID)")
         
-        //        Lấy userProfile đang nằm trong Tabbar controller
+        //Lấy userProfile đang nằm trong Tabbar controller
         if let tabBarController = self.tabBarController as? TabHomeViewController {
-            // Truy cập dữ liệu trong TabBarController
+            //Truy cập dữ liệu trong TabBarController
             if let userProfile = tabBarController.userProfile
             {
                 for wallet in userProfile.Wallets {
                     setTransactions(data: wallet.getTransactions())
                 }
-                //                Sắp xếp mới nhất
+                //Sắp xếp mới nhất
                 transactions.sort { $0.getCreateAt > $1.getCreateAt }
                 
-                //                Lọc transactions theo ngày
+                //Lọc transactions theo ngày
                 sections = createSections(from: transactions)
             }
         }

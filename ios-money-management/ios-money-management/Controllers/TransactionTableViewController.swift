@@ -1,34 +1,24 @@
-//
-//  TransactionTableViewController.swift
-//  ios-money-management
-//
-//  Created by AnNguyen on 27/04/2024.
-//
-
 import UIKit
 
 class TransactionTableViewController: UITableViewController {
-//MARK: Properties
+    //MARK: Properties
     var transactions = [Transaction]()
-//    MARK: Load lần đầu
+    //MARK: Load lần đầu
     override func viewDidLoad() {
         super.viewDidLoad()
 
         print("Vào TransactionTableViewController")
-        
-
-
     }
 
-    // MARK: - Table view data source
+    //MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+        //Warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
+        //Warning Incomplete implementation, return the number of rows
         return transactions.count
     }
 
